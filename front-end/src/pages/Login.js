@@ -3,7 +3,7 @@ import { useHistory } from 'react-router-dom';
 import axios from 'axios';
 
 function Login() {
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const history = useHistory();
@@ -11,7 +11,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('/api/authenticate', { username, password });
+      const response = await axios.post('http://localhost:8080/api/auth/login', { email, password });
       localStorage.setItem('token', response.data.token);
       history.push('/dashboard');
     } catch (error) {
@@ -24,8 +24,8 @@ function Login() {
       <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <div>
-          <label htmlFor="username">Nome de usuário:</label>
-          <input type="text" id="username" value={username} onChange={(e) => setUsername(e.target.value)} />
+          <label htmlFor="email">Nome de usuário:</label>
+          <input type="text" id="email" value={email} onChange={(e) => setEmail(e.target.value)} />
         </div>
         <div>
           <label htmlFor="password">Senha:</label>
