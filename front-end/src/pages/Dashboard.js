@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useHistory } from "react-router-dom";
+import { getUserByToken } from '../service/userApi';
 
 function Dashboard() {
   const [user, setUser] = useState(null);
@@ -8,13 +9,7 @@ function Dashboard() {
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
-      fetch("http://localhost:8080/api/auth/verify-token", {
-        method: 'POST',
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
-        .then((response) => response.json())
+      getUserByToken(token)
         .then((data) => {
           setUser(data);
         })
@@ -36,7 +31,7 @@ function Dashboard() {
   return (
     <div>
       <h1>Dashboard</h1>
-      <p>Welcome, {user ? user.name : ""}!</p>
+      <p>Welcome, {user ? user.email : ""}!</p>
       {console.log(user)}
       <button onClick={handleLogout}>Logout</button>
     </div>

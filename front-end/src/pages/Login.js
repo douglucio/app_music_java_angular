@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import axios from 'axios';
+import { login } from '../service/userApi';
 
 function Login() {
   const [email, setEmail] = useState('');
@@ -11,8 +11,7 @@ function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await axios.post('http://localhost:8080/api/auth/login', { email, password });
-      localStorage.setItem('token', response.data.token);
+      login(email,password);
       history.push('/dashboard');
     } catch (error) {
       setError('Nome de usuário ou senha inválido');

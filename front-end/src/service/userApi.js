@@ -27,4 +27,20 @@ const deleteUser = async (id) => {
   return response.data;
 };
 
-export { getAllUsers, getUserById, createUser, updateUser, deleteUser };
+const getUserByToken = async (token) => {
+  const response = await axios.get(`${API_URL}/auth/tokenvalid`,{
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${token}`,
+    }
+  });
+  return response.data;
+};
+
+const login = async (email, password) => {
+  const response = await axios.post(`${API_URL}/auth/login`, { email, password });
+  localStorage.setItem('token', response.data.token);
+  
+};
+
+export { getAllUsers, getUserById, createUser, updateUser, deleteUser, getUserByToken, login };

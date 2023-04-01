@@ -31,3 +31,45 @@ build/
 
 ### VS Code ###
 .vscode/
+
+# Compiled class file
+*.class
+
+# Log files
+log/
+*.log
+*.log.*
+*.access
+*.pid
+*.hprof
+
+# Maven files
+target/
+mvnw
+mvnw.cmd
+.DS_Store
+mvn_cache/
+mvn_temp/
+maven-archiver/
+maven-status/
+!src/main/
+!src/test/
+!src/main/java/
+!src/main/resources/
+!src/test/java/
+!src/test/resources/
+!src/main/resources/application.properties
+
+# IDE files
+.vscode/
+.idea/
+*.iml
+*.iws
+*.ipr
+
+# Temporary files
+*~
+/.gitignore
+/.mvn/
+/pom.xml
+/src/

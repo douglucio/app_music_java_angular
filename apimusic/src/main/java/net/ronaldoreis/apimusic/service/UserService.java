@@ -1,7 +1,10 @@
 package net.ronaldoreis.apimusic.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
+
+
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -15,6 +18,9 @@ import java.util.Optional;
 
 @Service
 public class UserService implements UserDetailsService {
+	
+	@Value("${jwt.secret}")
+    private String secret;
 	
 	private final BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
 
@@ -56,4 +62,6 @@ public class UserService implements UserDetailsService {
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
+    
+    
 }

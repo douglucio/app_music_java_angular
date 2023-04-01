@@ -24,6 +24,7 @@ public class UserController {
     @Autowired
     private UserService userService;
     
+    @Autowired
     private UserRepository userRepository;
 
     @GetMapping
@@ -41,7 +42,7 @@ public class UserController {
             throw new UserNotFoundException("User not found with id " + id);
         }
     }
-
+    
     @PostMapping
     public ResponseEntity<User> createUser(@Valid @NotNull @RequestBody User user) {
         User savedUser = userService.createUser(user);
